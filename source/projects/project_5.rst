@@ -9,12 +9,12 @@
 
 Ниже представлен пример JSON-ответа от сервера:
 
-.. literalinclude:: /tech_writer_portfolio/source/_static/example_api_response.json
+.. literalinclude:: ../_static/example_api_response.json
    :language: json
    :linenos:
    :caption: Пример JSON-ответа API
 
-Вы можете скачать этот файл: :download:`example_api_response.json </tech_writer_portfolio/source/_static/example_api_response.json>`.
+Вы можете скачать этот файл: :download:`example_api_response.json <../_static/example_api_response.json>`.
 
 
 
