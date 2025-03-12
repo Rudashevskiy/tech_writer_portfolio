@@ -87,3 +87,4 @@ zipp==3.20.2
 sphinx-jsonschema
 sphinxcontrib-openapi
 myst-parser
+plantuml==0.3.0
