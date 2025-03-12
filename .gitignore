@@ -17,6 +17,8 @@ Thumbs.db
 *.tmp
 *.swp
 
+# Plantuml
+plantuml/plantuml-1.2025.0.jar
 
 # Объяснение правил:
 # venv/: Исключает директорию виртуального окружения.
