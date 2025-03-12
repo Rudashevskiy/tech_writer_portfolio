@@ -11,7 +11,7 @@
       }
    </style>
 
-.. image:: C:/tech_writer_portfolio/source/_static/sticker_lama_nothing.jpg
+.. image:: \\tech_writer_portfolio\\source\\_static\\sticker_lama_nothing.jpg
     :scale: 30%
     :align: center
     :class: llama-picture

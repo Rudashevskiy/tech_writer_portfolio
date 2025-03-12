@@ -2,12 +2,12 @@
 ===================================================
 
 
-.. image:: C:/tech_writer_portfolio/source/_static/book-math1.jpg
+.. image:: \\_static\\book-math1.jpg
     :scale: 30%
 
 
 
-.. image:: C:/tech_writer_portfolio/source/_static/book-math2.jpg
+.. image:: \\_static\\book-math2.jpg
     :scale: 25%
 
 Когда учебник по математике (спасибо, Андре Анго) такой толщины, 
