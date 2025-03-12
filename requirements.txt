@@ -86,3 +86,4 @@ widgetsnbextension==4.0.13
 zipp==3.20.2
 sphinx-jsonschema
 sphinxcontrib-openapi
+myst-parser
