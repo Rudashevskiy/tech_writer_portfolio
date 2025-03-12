@@ -44,8 +44,7 @@ extensions = [
 
 
 # Укажите URL публичного сервера PlantUML
-# plantuml = 'https://www.plantuml.com/plantuml'
-plantuml = 'https://www.plantuml.com/plantuml/svg/'
+plantuml = 'https://www.plantuml.com/plantuml'
 
 # Настройка тегов
 tags_create_tags = True
