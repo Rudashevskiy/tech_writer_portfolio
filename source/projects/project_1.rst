@@ -5,6 +5,4 @@
 
 Пример реализации диаграммы C4, используя PlantUML:
 
-.. uml:: ../_static/1.puml
-   :align: center
-
+.. figure:: ../_static/1.svg

@@ -40,11 +40,11 @@ extensions = [
 
 
 # Укажите путь к plantuml.jar и команду для его запуска
-plantuml = 'java -Djava.awt.headless=true -jar plantuml/plantuml.jar'
+# plantuml = 'java -Djava.awt.headless=true -jar plantuml/plantuml.jar'
 
 
 # Укажите URL публичного сервера PlantUML
-# plantuml = 'https://www.plantuml.com/plantuml'
+plantuml = 'https://www.plantuml.com/plantuml/svg/'
 
 # Настройка тегов
 tags_create_tags = True
