@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master 
+      - master
 
 jobs:
   build-and-deploy:
@@ -19,6 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
+          sed -i '/pywin32/d' requirements.txt  # Удаляем pywin32 из списка зависимостей
           pip install -r requirements.txt
 
       - name: Build Sphinx site
