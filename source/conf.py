@@ -40,10 +40,12 @@ extensions = [
 
 
 # Укажите путь к plantuml.jar и команду для его запуска
-plantuml = 'java -jar C:/tech_writer_portfolio/plantuml/plantuml-1.2025.0.jar'
+# plantuml = 'java -jar C:/tech_writer_portfolio/plantuml/plantuml-1.2025.0.jar'
+
 
 # Укажите URL публичного сервера PlantUML
 # plantuml = 'https://www.plantuml.com/plantuml'
+plantuml = 'https://www.plantuml.com/plantuml/svg/'
 
 # Настройка тегов
 tags_create_tags = True
