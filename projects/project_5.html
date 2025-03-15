@@ -1,0 +1,664 @@
+<!doctype html>
+<html class="no-js" lang="ru" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Алфавитный указатель" href="../genindex.html" /><link rel="search" title="Поиск" href="../search.html" /><link rel="next" title="Руководство доступа к PostgreSQL через ODBC" href="project_6.html" /><link rel="prev" title="Пример YAML файла API" href="project_4.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+        <title>Документация API - Tech Writer Portfolio</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d3940d53" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Tech Writer Portfolio</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/logo.jpg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Tech Writer Portfolio</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Поиск" name="q" aria-label="Поиск">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Навигация по сайту:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../courses_and_certificates.html">Обучающие курсы и сертификаты</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Мои проекты</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Мои проекты</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project_1.html">Пример работы 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_2.html">Руководство администратора</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_3.html">Руководство пользователя Git для начинающих технических писателей</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_4.html">Пример YAML файла API</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Документация API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_6.html">Руководство доступа к PostgreSQL через ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_7.html">Инструкция как запусть свой первый статический сайт на Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_8.html">Пример разработки бизнес-процесса компании</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blog/index.html">Мой блог</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Мой блог</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blog/article_1.html">История одного технический писателя</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/article_2.html">Один из друзей. Его имя — «4 пальца толщиной» 😂</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/article_3.html">Жизненные советы: Как стать писателем?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../skills/index.html">Мои навыки</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical/index.html">Описание технической реализации сайта</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/projects/project_5.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="api">
+<h1>Документация API<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h1>
+<p>Этот раздел содержит примеры запросов и ответов для API расчета нагрева проводов.</p>
+<section id="json">
+<h2>Пример JSON-ответа<a class="headerlink" href="#json" title="Permalink to this heading">¶</a></h2>
+<p>Ниже представлен пример JSON-ответа от сервера:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Пример JSON-ответа API</span><a class="headerlink" href="#id3" title="Постоянная ссылка на код">¶</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="p">{</span>
+<span class="linenos">  2</span><span class="w">    </span><span class="nt">&quot;apiVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="linenos">  3</span><span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wire Heating Calculation Service&quot;</span><span class="p">,</span>
+<span class="linenos">  4</span><span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;API for calculating the heating of electrical wires based on various parameters.&quot;</span><span class="p">,</span>
+<span class="linenos">  5</span><span class="w">    </span><span class="nt">&quot;endpoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">  6</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">  7</span><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Calculate Wire Heating&quot;</span><span class="p">,</span>
+<span class="linenos">  8</span><span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/calculate-heating&quot;</span><span class="p">,</span>
+<span class="linenos">  9</span><span class="w">        </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="linenos"> 10</span><span class="w">        </span><span class="nt">&quot;requestBody&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 11</span><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos"> 12</span><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 13</span><span class="w">            </span><span class="nt">&quot;wireModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 14</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos"> 15</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The model or mark of the wire (e.g., &#39;МФ-85&#39;, &#39;МФ-100&#39;). Must match a value from the TWires.dat file.&quot;</span>
+<span class="linenos"> 16</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 17</span><span class="w">            </span><span class="nt">&quot;windSpeed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 18</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 19</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Wind speed in meters per second (m/s). Default: 1.0.&quot;</span>
+<span class="linenos"> 20</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 21</span><span class="w">            </span><span class="nt">&quot;ambientTemperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 22</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 23</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ambient temperature in degrees Celsius (°C). Default: 40.0.&quot;</span>
+<span class="linenos"> 24</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 25</span><span class="w">            </span><span class="nt">&quot;maxTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 26</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+<span class="linenos"> 27</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Maximum simulation time in minutes. Default: 60.&quot;</span>
+<span class="linenos"> 28</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 29</span><span class="w">            </span><span class="nt">&quot;timeStep&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 30</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+<span class="linenos"> 31</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Time step for the simulation in minutes. Default: 1.&quot;</span>
+<span class="linenos"> 32</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 33</span><span class="w">            </span><span class="nt">&quot;tmpProgram&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 34</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+<span class="linenos"> 35</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Whether to use a temporary program for calculations. Default: false.&quot;</span>
+<span class="linenos"> 36</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 37</span><span class="w">            </span><span class="nt">&quot;calculationMethod&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 38</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos"> 39</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The method used for the calculation (e.g., &#39;Ми77&#39;, &#39;Ми61&#39;). Must match one of the available methods.&quot;</span>
+<span class="linenos"> 40</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos"> 41</span><span class="w">          </span><span class="p">},</span>
+<span class="linenos"> 42</span><span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;wireModel&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;calculationMethod&quot;</span><span class="p">]</span>
+<span class="linenos"> 43</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos"> 44</span><span class="w">        </span><span class="nt">&quot;responseBody&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 45</span><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos"> 46</span><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 47</span><span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 48</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos"> 49</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Status of the calculation (&#39;success&#39; or &#39;error&#39;).&quot;</span>
+<span class="linenos"> 50</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 51</span><span class="w">            </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 52</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos"> 53</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Additional message or error description.&quot;</span>
+<span class="linenos"> 54</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos"> 55</span><span class="w">            </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 56</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos"> 57</span><span class="w">              </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 58</span><span class="w">                </span><span class="nt">&quot;currentOverTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 59</span><span class="w">                  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="linenos"> 60</span><span class="w">                  </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 61</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 62</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Current values over time in Amperes (A).&quot;</span>
+<span class="linenos"> 63</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos"> 64</span><span class="w">                  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Array of current values over time.&quot;</span>
+<span class="linenos"> 65</span><span class="w">                </span><span class="p">},</span>
+<span class="linenos"> 66</span><span class="w">                </span><span class="nt">&quot;temperatureOverTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 67</span><span class="w">                  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="linenos"> 68</span><span class="w">                  </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 69</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 70</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Temperature values over time in degrees Celsius (°C).&quot;</span>
+<span class="linenos"> 71</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos"> 72</span><span class="w">                  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Array of temperature values over time.&quot;</span>
+<span class="linenos"> 73</span><span class="w">                </span><span class="p">},</span>
+<span class="linenos"> 74</span><span class="w">                </span><span class="nt">&quot;permissibleTemperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 75</span><span class="w">                  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 76</span><span class="w">                  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Permissible temperature limit in degrees Celsius (°C).&quot;</span>
+<span class="linenos"> 77</span><span class="w">                </span><span class="p">},</span>
+<span class="linenos"> 78</span><span class="w">                </span><span class="nt">&quot;tapr&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 79</span><span class="w">                  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 80</span><span class="w">                  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tapr parameter specific to the selected wire model.&quot;</span>
+<span class="linenos"> 81</span><span class="w">                </span><span class="p">},</span>
+<span class="linenos"> 82</span><span class="w">                </span><span class="nt">&quot;additionalStats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 83</span><span class="w">                  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos"> 84</span><span class="w">                  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 85</span><span class="w">                    </span><span class="nt">&quot;averageCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 86</span><span class="w">                      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 87</span><span class="w">                      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Average current over the simulation period in Amperes (A).&quot;</span>
+<span class="linenos"> 88</span><span class="w">                    </span><span class="p">},</span>
+<span class="linenos"> 89</span><span class="w">                    </span><span class="nt">&quot;peakTemperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 90</span><span class="w">                      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos"> 91</span><span class="w">                      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Peak temperature reached during the simulation in degrees Celsius (°C).&quot;</span>
+<span class="linenos"> 92</span><span class="w">                    </span><span class="p">}</span>
+<span class="linenos"> 93</span><span class="w">                  </span><span class="p">}</span>
+<span class="linenos"> 94</span><span class="w">                </span><span class="p">}</span>
+<span class="linenos"> 95</span><span class="w">              </span><span class="p">}</span>
+<span class="linenos"> 96</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos"> 97</span><span class="w">          </span><span class="p">}</span>
+<span class="linenos"> 98</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos"> 99</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">100</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">101</span><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Get Available Wire Models&quot;</span><span class="p">,</span>
+<span class="linenos">102</span><span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/available-wires&quot;</span><span class="p">,</span>
+<span class="linenos">103</span><span class="w">        </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<span class="linenos">104</span><span class="w">        </span><span class="nt">&quot;responseBody&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">105</span><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos">106</span><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">107</span><span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">108</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos">109</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Status of the request (&#39;success&#39; or &#39;error&#39;).&quot;</span>
+<span class="linenos">110</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos">111</span><span class="w">            </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">112</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos">113</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Additional message or error description.&quot;</span>
+<span class="linenos">114</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos">115</span><span class="w">            </span><span class="nt">&quot;wires&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">116</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="linenos">117</span><span class="w">              </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">118</span><span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos">119</span><span class="w">                </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">120</span><span class="w">                  </span><span class="nt">&quot;mark&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">121</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos">122</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The model or mark of the wire (e.g., &#39;МФ-85&#39;).&quot;</span>
+<span class="linenos">123</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos">124</span><span class="w">                  </span><span class="nt">&quot;diameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">125</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos">126</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Diameter of the wire in millimeters (mm).&quot;</span>
+<span class="linenos">127</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos">128</span><span class="w">                  </span><span class="nt">&quot;resistance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">129</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos">130</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Resistance of the wire in Ohms per kilometer (Ω/km).&quot;</span>
+<span class="linenos">131</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos">132</span><span class="w">                  </span><span class="nt">&quot;thermalCapacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">133</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos">134</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Thermal capacity of the wire in Joules per Kelvin (J/K).&quot;</span>
+<span class="linenos">135</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos">136</span><span class="w">                  </span><span class="nt">&quot;ratedCurrent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">137</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos">138</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Rated current of the wire in Amperes (A).&quot;</span>
+<span class="linenos">139</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos">140</span><span class="w">                  </span><span class="nt">&quot;durabilityTemperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">141</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos">142</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Durability temperature of the wire in degrees Celsius (°C).&quot;</span>
+<span class="linenos">143</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos">144</span><span class="w">                  </span><span class="nt">&quot;tapr&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">145</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="linenos">146</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tapr parameter specific to the wire model.&quot;</span>
+<span class="linenos">147</span><span class="w">                  </span><span class="p">}</span>
+<span class="linenos">148</span><span class="w">                </span><span class="p">}</span>
+<span class="linenos">149</span><span class="w">              </span><span class="p">},</span>
+<span class="linenos">150</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;List of available wire models with their properties.&quot;</span>
+<span class="linenos">151</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">152</span><span class="w">          </span><span class="p">}</span>
+<span class="linenos">153</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">154</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">155</span><span class="w">      </span><span class="p">{</span>
+<span class="linenos">156</span><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Get Available Calculation Methods&quot;</span><span class="p">,</span>
+<span class="linenos">157</span><span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/available-methods&quot;</span><span class="p">,</span>
+<span class="linenos">158</span><span class="w">        </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<span class="linenos">159</span><span class="w">        </span><span class="nt">&quot;responseBody&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">160</span><span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos">161</span><span class="w">          </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">162</span><span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">163</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos">164</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Status of the request (&#39;success&#39; or &#39;error&#39;).&quot;</span>
+<span class="linenos">165</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos">166</span><span class="w">            </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">167</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos">168</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Additional message or error description.&quot;</span>
+<span class="linenos">169</span><span class="w">            </span><span class="p">},</span>
+<span class="linenos">170</span><span class="w">            </span><span class="nt">&quot;methods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">171</span><span class="w">              </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;array&quot;</span><span class="p">,</span>
+<span class="linenos">172</span><span class="w">              </span><span class="nt">&quot;items&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">173</span><span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="linenos">174</span><span class="w">                </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">175</span><span class="w">                  </span><span class="nt">&quot;shortName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">176</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos">177</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Short name of the calculation method (e.g., &#39;Ми77&#39;).&quot;</span>
+<span class="linenos">178</span><span class="w">                  </span><span class="p">},</span>
+<span class="linenos">179</span><span class="w">                  </span><span class="nt">&quot;fullName&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">180</span><span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="linenos">181</span><span class="w">                    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Full name or description of the calculation method (e.g., &#39;Михеев, 1977, гладкий&#39;).&quot;</span>
+<span class="linenos">182</span><span class="w">                  </span><span class="p">}</span>
+<span class="linenos">183</span><span class="w">                </span><span class="p">}</span>
+<span class="linenos">184</span><span class="w">              </span><span class="p">},</span>
+<span class="linenos">185</span><span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;List of available calculation methods.&quot;</span>
+<span class="linenos">186</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">187</span><span class="w">          </span><span class="p">}</span>
+<span class="linenos">188</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">189</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">190</span><span class="w">    </span><span class="p">]</span>
+<span class="linenos">191</span><span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Вы можете скачать этот файл: <a class="reference download internal" download="" href="../_downloads/87960a1556b271938a80176d905edb6a/example_api_response.json"><code class="xref download docutils literal notranslate"><span class="pre">example_api_response.json</span></code></a>.</p>
+</section>
+<section id="id1">
+<h2>Описание полей<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Общая информация</p>
+<ul class="simple">
+<li><p><strong>apiVersion</strong>: Версия API.</p></li>
+<li><p><strong>title</strong>: Название сервиса.</p></li>
+<li><p><strong>description</strong>: Краткое описание API.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Эндпоинты<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="calculate-wire-heating">
+<h3>1. Calculate Wire Heating<a class="headerlink" href="#calculate-wire-heating" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>URL</strong>: <code class="docutils literal notranslate"><span class="pre">/calculate-heating</span></code></p></li>
+<li><p><strong>Method</strong>: POST</p></li>
+</ul>
+<p><strong>RequestBody</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>wireModel</strong>: Модель или марка провода (например, <code class="docutils literal notranslate"><span class="pre">'МФ-85'</span></code>, <code class="docutils literal notranslate"><span class="pre">'МФ-100'</span></code>). Должна соответствовать значению из файла <code class="docutils literal notranslate"><span class="pre">TWires.dat</span></code>.</p></li>
+<li><p><strong>windSpeed</strong>: Скорость ветра в метрах в секунду (м/с). По умолчанию: <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p></li>
+<li><p><strong>ambientTemperature</strong>: Температура окружающей среды в градусах Цельсия (°C). По умолчанию: <code class="docutils literal notranslate"><span class="pre">40.0</span></code>.</p></li>
+<li><p><strong>maxTime</strong>: Максимальное время симуляции в минутах. По умолчанию: <code class="docutils literal notranslate"><span class="pre">60</span></code>.</p></li>
+<li><p><strong>timeStep</strong>: Шаг времени для симуляции в минутах. По умолчанию: <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>tmpProgram</strong>: Использовать ли временную программу для расчетов. По умолчанию: <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p><strong>calculationMethod</strong>: Метод расчета (например, <code class="docutils literal notranslate"><span class="pre">'Ми77'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Ми61'</span></code>). Должен соответствовать одному из доступных методов.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>ResponseBody</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>status</strong>: Статус расчета (<code class="docutils literal notranslate"><span class="pre">'success'</span></code> или <code class="docutils literal notranslate"><span class="pre">'error'</span></code>).</p></li>
+<li><p><strong>message</strong>: Дополнительное сообщение или описание ошибки.</p></li>
+<li><p><strong>results</strong>:</p>
+<ul>
+<li><p><strong>currentOverTime</strong>: Массив значений тока во времени (в амперах).</p></li>
+<li><p><strong>temperatureOverTime</strong>: Массив значений температуры во времени (в градусах Цельсия).</p></li>
+<li><p><strong>permissibleTemperature</strong>: Допустимый предел температуры (в градусах Цельсия).</p></li>
+<li><p><strong>tapr</strong>: Параметр TAPR, специфичный для выбранной модели провода.</p></li>
+<li><p><strong>additionalStats</strong>:</p>
+<ul>
+<li><p><strong>averageCurrent</strong>: Средний ток за период симуляции (в амперах).</p></li>
+<li><p><strong>peakTemperature</strong>: Пиковая температура, достигнутая во время симуляции (в градусах Цельсия).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="get-available-wire-models">
+<h3>1. Get Available Wire Models<a class="headerlink" href="#get-available-wire-models" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>URL</strong>: <code class="docutils literal notranslate"><span class="pre">/available-wires</span></code></p></li>
+<li><p><strong>Method</strong>: GET</p></li>
+</ul>
+<p><strong>ResponseBody</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>status</strong>: Статус запроса (<code class="docutils literal notranslate"><span class="pre">'success'</span></code> или <code class="docutils literal notranslate"><span class="pre">'error'</span></code>).</p></li>
+<li><p><strong>message</strong>: Дополнительное сообщение или описание ошибки.</p></li>
+<li><p><strong>wires</strong>: Список доступных моделей проводов со свойствами:</p>
+<ul>
+<li><p><strong>mark</strong>: Модель или марка провода (например, <code class="docutils literal notranslate"><span class="pre">'МФ-85'</span></code>).</p></li>
+<li><p><strong>diameter</strong>: Диаметр провода (в миллиметрах).</p></li>
+<li><p><strong>resistance</strong>: Сопротивление провода (в омах на километр).</p></li>
+<li><p><strong>thermalCapacity</strong>: Теплоемкость провода (в джоулях на кельвин).</p></li>
+<li><p><strong>ratedCurrent</strong>: Номинальный ток провода (в амперах).</p></li>
+<li><p><strong>durabilityTemperature</strong>: Температура прочности провода (в градусах Цельсия).</p></li>
+<li><p><strong>tapr</strong>: Параметр TAPR, специфичный для модели провода.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="get-available-calculation-methods">
+<h3>1. Get Available Calculation Methods<a class="headerlink" href="#get-available-calculation-methods" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>URL</strong>: <code class="docutils literal notranslate"><span class="pre">/available-methods</span></code></p></li>
+<li><p><strong>Method</strong>: GET</p></li>
+</ul>
+<p><strong>ResponseBody</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>status</strong>: Статус запроса (<code class="docutils literal notranslate"><span class="pre">'success'</span></code> или <code class="docutils literal notranslate"><span class="pre">'error'</span></code>).</p></li>
+<li><p><strong>message</strong>: Дополнительное сообщение или описание ошибки.</p></li>
+<li><p><strong>methods</strong>: Список доступных методов расчета:</p>
+<ul>
+<li><p><strong>shortName</strong>: Короткое название метода (например, <code class="docutils literal notranslate"><span class="pre">'Ми77'</span></code>).</p></li>
+<li><p><strong>fullName</strong>: Полное название или описание метода (например, <code class="docutils literal notranslate"><span class="pre">'Михеев,</span> <span class="pre">1977,</span> <span class="pre">гладкий'</span></code>).</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="project_6.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Руководство доступа к PostgreSQL через ODBC</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="project_4.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Пример YAML файла API</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Llama techwriter
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Документация API</a><ul>
+<li><a class="reference internal" href="#json">Пример JSON-ответа</a></li>
+<li><a class="reference internal" href="#id1">Описание полей</a></li>
+<li><a class="reference internal" href="#id2">Эндпоинты</a><ul>
+<li><a class="reference internal" href="#calculate-wire-heating">1. Calculate Wire Heating</a></li>
+<li><a class="reference internal" href="#get-available-wire-models">1. Get Available Wire Models</a></li>
+<li><a class="reference internal" href="#get-available-calculation-methods">1. Get Available Calculation Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ddbc6389"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/print_button.js?v=ca7e3c2e"></script>
+    <script src="../_static/export_pdf.js?v=a067a74f"></script>
+    <script src="../_static/translations.js?v=29b1f277"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    </body>
+</html>

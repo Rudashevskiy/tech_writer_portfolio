@@ -1,0 +1,983 @@
+<!doctype html>
+<html class="no-js" lang="ru" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Алфавитный указатель" href="../genindex.html" /><link rel="search" title="Поиск" href="../search.html" /><link rel="next" title="Инструкция как запусть свой первый статический сайт на Sphinx" href="project_7.html" /><link rel="prev" title="Документация API" href="project_5.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+        <title>Руководство доступа к PostgreSQL через ODBC - Tech Writer Portfolio</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d3940d53" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Tech Writer Portfolio</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/logo.jpg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Tech Writer Portfolio</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Поиск" name="q" aria-label="Поиск">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Навигация по сайту:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../courses_and_certificates.html">Обучающие курсы и сертификаты</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Мои проекты</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Мои проекты</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="project_1.html">Пример работы 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_2.html">Руководство администратора</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_3.html">Руководство пользователя Git для начинающих технических писателей</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_4.html">Пример YAML файла API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_5.html">Документация API</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Руководство доступа к PostgreSQL через ODBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_7.html">Инструкция как запусть свой первый статический сайт на Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_8.html">Пример разработки бизнес-процесса компании</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blog/index.html">Мой блог</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Мой блог</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blog/article_1.html">История одного технический писателя</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/article_2.html">Один из друзей. Его имя — «4 пальца толщиной» 😂</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blog/article_3.html">Жизненные советы: Как стать писателем?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../skills/index.html">Мои навыки</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical/index.html">Описание технической реализации сайта</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/projects/project_6.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="postgresql-odbc">
+<h1>Руководство доступа к PostgreSQL через ODBC<a class="headerlink" href="#postgresql-odbc" title="Permalink to this heading">¶</a></h1>
+<section id="introduction">
+<span id="id2"></span><h2>1. Введение<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Настоящее руководство предназначено для администраторов баз данных, разработчиков и специалистов по интеграции систем, которые занимаются настройкой подключения между базой данных PostgreSQL и другими программными продуктами через ODBC (Open Database Connectivity).</p>
+<p>Цель данного документа — предоставить подробные инструкции по настройке подключения к PostgreSQL через ODBC для различных платформ и инструментов, таких как Oracle Database, Microsoft Excel, Microsoft Access и Power Query. Руководство содержит шаги для установки драйверов, настройки конфигурационных файлов и выполнения запросов.</p>
+<p>Руководство фокусируется на PostgreSQL версии 11.2.0. Следует учесть, что действия могут отличаться в зависимости от конкретной версии PostgreSQL, используемой в вашей среде.</p>
+<section id="id3">
+<h3>1.1 Целевая аудитория:<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>Данная инструкция будет полезна следующим категориям пользователей:</p>
+<ul class="simple">
+<li><p><strong>Администраторы баз данных</strong>: Которые настраивают подключение между различными системами баз данных (например, Oracle и PostgreSQL).</p></li>
+<li><p><strong>Разработчики</strong>: Которым требуется доступ к данным PostgreSQL из приложений или инструментов, таких как Microsoft Excel, Access или Power Query.</p></li>
+<li><p><strong>Специалисты по интеграции систем</strong>: Задачи которых включают объединение разных баз данных и обеспечение их взаимодействия через стандартные протоколы, такие как ODBC.</p></li>
+</ul>
+<p>Для успешного использования данного руководства рекомендуется иметь базовые знания работы с ODBC, SQL и конфигурационными файлами операционных систем.</p>
+</section>
+</section>
+<section id="postgresql-oracle">
+<span id="guide-to-postgresql-access"></span><h2>2. Руководство по созданию доступа к PostgreSQL из Oracle<a class="headerlink" href="#postgresql-oracle" title="Permalink to this heading">¶</a></h2>
+<section id="installing-odbc-driver">
+<span id="id4"></span><h3>2.1 Установка PostgreSQL ODBC драйвера<a class="headerlink" href="#installing-odbc-driver" title="Permalink to this heading">¶</a></h3>
+<section id="windows">
+<span id="windows-installation"></span><h4>2.1.1 Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h4>
+<ol class="arabic">
+<li><p>Загрузите драйвер с официального сайта PostgreSQL для версии ОС: <a class="reference external" href="https://www.postgresql.org/ftp/odbc/">https://www.postgresql.org/ftp/odbc/</a></p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Необходимо выбрать корректный тип разрядности драйвера. Если приложение, которому требуется доступ, является 32-разрядным, а драйвер – 64-разрядным, возникнет ошибка: <code class="docutils literal notranslate"><span class="pre">ERROR</span> <span class="pre">[IM014]</span> <span class="pre">[Microsoft][ODBC</span> <span class="pre">Driver</span> <span class="pre">Manager]</span> <span class="pre">The</span> <span class="pre">specified</span> <span class="pre">DSN</span> <span class="pre">contains</span> <span class="pre">an</span> <span class="pre">architecture</span> <span class="pre">mismatch</span></code>.</p>
+</div>
+</li>
+<li><p>Установите драйвер ODBC для PostgreSQL.</p>
+<p>В операционной системе Windows рекомендуется устанавливать драйвер из MSI-пакета.</p>
+</li>
+<li><p>Перейдите в раздел «Источники данных ODBC» и создайте новый системный DSN для PostgreSQL.</p>
+<p>Если Windows 64-битная, а драйвер 32-битный, то панель управления следует запустить вручную: <code class="docutils literal notranslate"><span class="pre">c:\windows\system32\odbcad32.exe</span></code>.
+Укажите параметры подключения, такие как сервер, база данных, пользователь и пароль.</p>
+<p>Шаги выполнения:</p>
+<ul class="simple">
+<li><p>Нажмите «Системный DSN» (Data Source Name).</p></li>
+<li><p>Нажмите «Добавить», далее выберите «PostgreSQL Unicode».</p></li>
+<li><p>Укажите параметры:</p>
+<ul>
+<li><p><strong>Data Source Name</strong>: &lt;имя источника данных&gt; (например, Product).</p></li>
+<li><p><strong>Description</strong>: &lt;описание&gt;.</p></li>
+<li><p><strong>Database</strong>: &lt;базу данных&gt; (например, demo).</p></li>
+<li><p><strong>Server</strong>: &lt;сервер&gt; (например, localhost).</p></li>
+<li><p><strong>Port</strong>: &lt;порт&gt; (например, 5432).</p></li>
+<li><p><strong>User Name</strong>: &lt;имя пользователя&gt; (например, postgres).</p></li>
+<li><p><strong>Password</strong>: &lt;пароль&gt;.</p></li>
+</ul>
+</li>
+<li><p>Нажмите «Test», чтобы проверьте подключение. (Если подключение успешно, отобразится сообщение, например, «Connection successful».)</p></li>
+<li><p>Сохраните настройки.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="linux">
+<span id="linux-installation"></span><h4>2.1.2 Linux<a class="headerlink" href="#linux" title="Permalink to this heading">¶</a></h4>
+<ol class="arabic">
+<li><p>Установите UnixODBC.</p>
+<p>Менеджер ODBC драйверов, который понадобится для работы с ODBC в Linux-системах.</p>
+<p>Для Debian/Ubuntu:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>unixodbc<span class="w"> </span>unixodbc-dev
+</pre></div>
+</div>
+<p>Для RHEL/CentOS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>unixODBC<span class="w"> </span>unixODBC-devel
+</pre></div>
+</div>
+</li>
+<li><p>Загрузите необходимый драйвер (например psqlODBC).</p></li>
+<li><p>Установите драйвер ODBC для PostgreSQL (см. документацию на примере psqlODBC: <a class="reference external" href="https://odbc.postgresql.org/docs/unix-compilation.html">https://odbc.postgresql.org/docs/unix-compilation.html</a>).</p></li>
+<li><p>Настроите файлы конфигурации <code class="docutils literal notranslate"><span class="pre">odbcinst.ini</span></code> и <code class="docutils literal notranslate"><span class="pre">odbc.ini</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">odbcinst.ini</span></code></p>
+<p>Этот файл содержит информацию о драйверах ODBC. Обычно он находится в <code class="docutils literal notranslate"><span class="pre">/etc/odbcinst.ini</span></code>.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">sudo nano /etc/odbcinst.ini</span>
+</pre></div>
+</div>
+<p>Добавте следующую информацию о драйвере PostgreSQL:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[PostgreSQL]</span>
+<span class="na">Description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ODBC for PostgreSQL</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/lib/x86_64-linux-gnu/odbc/psqlodbcw.so</span>
+<span class="na">Setup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/lib/x86_64-linux-gnu/odbc/libodbcpsqlS.so</span>
+<span class="na">FileUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Пути к драйверам могут варьироваться в зависимости от используемой системы. Убедитесь, что указанные пути правильные.</p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">odbc.ini</span></code></p>
+<p>Этот файл содержит информацию о DSN. Обычно он находится в <code class="docutils literal notranslate"><span class="pre">/etc/odbc.ini</span></code>.</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">sudo nano /etc/odbc.ini</span>
+</pre></div>
+</div>
+<p>В odbc.ini добавте запись для DSN:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[pg_dsn]</span>
+<span class="na">Description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PostgreSQL DSN</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PostgreSQL</span>
+<span class="na">Servername</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;hostname&gt;</span>
+<span class="na">Port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5432</span>
+<span class="na">Database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;database_name&gt;</span>
+<span class="na">Username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;username&gt;</span>
+<span class="na">Password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;password&gt;</span>
+</pre></div>
+</div>
+<p>Пример настройки <code class="docutils literal notranslate"><span class="pre">odbc.ini</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[ODBC Data Sources]</span>
+<span class="na">Product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PostgreSQL</span>
+
+<span class="k">[Product]</span>
+<span class="na">Description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PostgreSQL DSN</span>
+<span class="na">Debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+<span class="na">CommLog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
+<span class="na">ReadOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/pgsql-9.1/lib/psqlodbc.so</span>
+<span class="na">Servername</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<span class="na">FetchBufferSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">99</span>
+<span class="na">Username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">postgres</span>
+<span class="na">Password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;пароль&gt;</span>
+<span class="na">Port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5432</span>
+<span class="na">Database</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">demo</span>
+
+<span class="k">[Default]</span>
+<span class="na">Driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/lib64/liboplodbcS.so.1</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<blockquote>
+<div><p>Убедитесь, что все пути и параметры указаны правильно для вашей системы (Windows или Linux).</p>
+</div></blockquote>
+</li>
+<li><p>Проверьте настройки.</p>
+<p>После настройки конфигурационных файлов, можно использовать команду <code class="docutils literal notranslate"><span class="pre">isql</span></code> для проверки подключения к базе данных:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>isql<span class="w"> </span>-v<span class="w"> </span>&lt;MyDataSource&gt;<span class="w"> </span>&lt;myuser&gt;<span class="w"> </span>&lt;mypassword&gt;
+</pre></div>
+</div>
+<p>Если подключение успешно, команда должна вывести сообщение о успешном подключении.</p>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="oracle-heterogeneous-services-hs-agents">
+<span id="oracle-heterogeneous-services"></span><h2>2.2 Настройка Oracle Heterogeneous Services (hs) agents<a class="headerlink" href="#oracle-heterogeneous-services-hs-agents" title="Permalink to this heading">¶</a></h2>
+<p>В данном разделе описывается процесс настройки компонента Oracle Database, который позволяет взаимодействовать с внешними, не-Oracle системами баз данных. HS агент выступает в качестве моста, позволяя Oracle Database выполнять запросы к данным, хранящимся в других СУБД, в данной инструкции это PostgreSQL.</p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Инструкции по настройке вашего агента могут незначительно отличаться от приведенных ниже инструкций. Пожалуйста, ознакомьтесь с Руководством по установке и эксплуатации вашего агента для получения более полной информации по установке.</p>
+</div>
+<section id="init-dg4odbc-ora">
+<span id="init-file-creation"></span><h3>2.2.1 Создание и настройка файла init&lt;dg4odbc&gt;.ora<a class="headerlink" href="#init-dg4odbc-ora" title="Permalink to this heading">¶</a></h3>
+<section id="windows-init-file">
+<span id="id5"></span><h4>2.2.1.1 Windows<a class="headerlink" href="#windows-init-file" title="Permalink to this heading">¶</a></h4>
+<ol class="arabic">
+<li><p>Перейдите в директорию <code class="docutils literal notranslate"><span class="pre">ORACLE_HOME\database\hs\admin\</span></code>.</p>
+<p>где <code class="docutils literal notranslate"><span class="pre">ORACLE_HOME</span></code> — домашняя директория, куда установлена база данных.</p>
+</li>
+<li><p>Создайте файл <code class="docutils literal notranslate"><span class="pre">init&lt;dg4odbc&gt;.ora</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">initProduct.ora</span></code>, где <code class="docutils literal notranslate"><span class="pre">&lt;sid&gt;</span></code> — это Data Source Name:&lt;имя источника данных&gt;, созданное выше.</p>
+</li>
+<li><p>Внесите следующие параметры:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">HS_FDS_CONNECT_INFO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PostgreSQL</span>
+<span class="na">HS_FDS_TRACE_LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">OFF</span>
+</pre></div>
+</div>
+<p>Возможно, потребуются дополнительные параметры:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">HS_NLS_NCHAR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">AL32UTF8</span>
+<span class="na">HS_LANGUAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">AMERICAN_AMERICA.AL32UTF8</span>
+</pre></div>
+</div>
+<p>Для корректного отображения символов в базе данных PostgreSQL при использовании Heterogeneous Services (HS) в Oracle, необходимо правильно настроить параметры <code class="docutils literal notranslate"><span class="pre">HS_NLS_NCHAR</span></code> и <code class="docutils literal notranslate"><span class="pre">HS_LANGUAGE</span></code>. Эти параметры определяют национальные языковые настройки и кодировки.</p>
+<p>В PostgreSQL база данных может использовать различные кодировки символов, языки и кодовые страницы. Чтобы узнать, какие из них используются в конкретной базе данных, можно выполнить несколько SQL-запросов.</p>
+<ol class="loweralpha simple">
+<li><p>Кодировка символов и Collation (сравнение строк):</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">datname</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pg_encoding_to_char</span><span class="p">(</span><span class="k">encoding</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">encoding</span><span class="p">,</span>
+<span class="w">    </span><span class="n">datcollate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">datctype</span>
+<span class="k">FROM</span>
+<span class="w">    </span><span class="n">pg_database</span>
+<span class="k">WHERE</span>
+<span class="w">    </span><span class="n">datname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;имя_вашей_базы_данных&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Этот запрос вернет информацию о кодировке, collation и ctype для указанной базы данных. Замените <code class="docutils literal notranslate"><span class="pre">'имя_вашей_базы_данных'</span></code> на название вашей базы данных.</p>
+<ol class="loweralpha simple" start="2">
+<li><p>Язык сервера (локаль):</p></li>
+</ol>
+<p>Можно узнать текущие настройки локали сервера с помощью следующих запросов:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">lc_collate</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">lc_ctype</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">lc_messages</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">lc_monetary</span><span class="p">;</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">lc_numeric</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Эти команды покажут текущие настройки локали для различного рода данных (сравнение строк, типизация, сообщения, денежные единицы, числовые данные, время).</p>
+<ol class="loweralpha simple" start="3">
+<li><p>Кодовая страница (encoding):</p></li>
+</ol>
+<p>Кодовая страница отображает способ кодирования символов. PostgreSQL использует кодировку UTF-8 по умолчанию, но это может быть изменено при создании базы данных или при настройке сервера.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">server_encoding</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Этот запрос покажет текущую кодировку сервера.</p>
+</li>
+</ol>
+</section>
+<section id="linux-init-file">
+<span id="id6"></span><h4>2.2.1.2 Linux<a class="headerlink" href="#linux-init-file" title="Permalink to this heading">¶</a></h4>
+<ol class="arabic">
+<li><p>Перейдите в директорию <code class="docutils literal notranslate"><span class="pre">$ORACLE_HOME/hs/admin</span></code>.</p></li>
+<li><p>Добавте или измените настройки:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">HS_FDS_CONNECT_INFO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PostgreSQL</span>
+<span class="na">HS_FDS_TRACE_LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
+</pre></div>
+</div>
+<p>Возможно, потребуются дополнительные параметры:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">HS_FDS_CONNECT_INFO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">MoodlePostgres</span>
+<span class="c1"># Указывает информацию для подключения к удаленной базе данных</span>
+<span class="na">HS_FDS_SHAREABLE_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/&lt;path_to_postrges&gt;/psqlodbc.so</span>
+<span class="c1"># Указывает путь к драйверу ODBC для PostgreSQL</span>
+<span class="na">HS_FDS_SUPPORT_STATISTICS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">FALSE</span>
+<span class="c1"># Контролирует поддержку статистики со стороны удаленной базы данных</span>
+<span class="na">HS_KEEP_REMOTE_COLUMN_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ALL</span>
+<span class="c1"># Указывает, как обрабатывать размеры удаленных столбцов</span>
+</pre></div>
+</div>
+<p>Пример параметров:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">HS_FDS_CONNECT_INFO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PostgreSQL</span>
+<span class="na">HS_FDS_SHAREABLE_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/lib/psqlodbc.so</span>
+<span class="na">HS_FDS_SUPPORT_STATISTICS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">FALSE</span>
+<span class="na">HS_KEEP_REMOTE_COLUMN_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ALL</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="listener-ora">
+<span id="listener-ora-configuration"></span><h2>2.3 Настройка listener.ora<a class="headerlink" href="#listener-ora" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Перейдите в директорию <code class="docutils literal notranslate"><span class="pre">c:\oracle\product\11.2.0\database\NETWORK\ADMIN\</span></code>.</p></li>
+<li><p>Измените файл <code class="docutils literal notranslate"><span class="pre">listener.ora</span></code>.</p>
+<p>Откройте файл <code class="docutils literal notranslate"><span class="pre">listener.ora</span></code> и добавте следующие строки в секцию <code class="docutils literal notranslate"><span class="pre">SID_LIST_LISTENER</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="na">SID_LIST_LISTENER</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="na">(SID_LIST</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="na">(SID_DESC</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="na">(SID_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CLRExtProc)</span>
+<span class="w">          </span><span class="na">(ORACLE_HOME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\oracle\product\11.2.0\database)</span>
+<span class="w">          </span><span class="na">(PROGRAM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">extproc)</span>
+<span class="w">          </span><span class="na">(ENVS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;EXTPROC_DLLS=ONLY:C:\oracle\product\11.2.0\database\bin\oraclr11.dll&quot;</span><span class="na">)</span>
+<span class="w">      </span><span class="na">)</span>
+<span class="hll"><span class="w">      </span><span class="na">(SID_DESC</span><span class="w"> </span><span class="o">=</span>
+</span><span class="hll"><span class="w">          </span><span class="na">(SID_NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Product)</span>
+</span><span class="hll"><span class="w">          </span><span class="na">(ORACLE_HOME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">C:\oracle\product\11.2.0\database)</span>
+</span><span class="hll"><span class="w">          </span><span class="na">(PROGRAM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dg4odbc)</span>
+</span><span class="hll"><span class="w">      </span><span class="na">)</span>
+</span><span class="w">  </span><span class="na">)</span>
+
+<span class="w">  </span><span class="na">LISTENER</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="na">(DESCRIPTION_LIST</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="na">(DESCRIPTION</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="na">(ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(PROTOCOL = IPC)(KEY = EXTPROC1521))</span>
+<span class="w">          </span><span class="na">(ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span>
+<span class="w">      </span><span class="na">)</span>
+<span class="w">  </span><span class="na">)</span>
+</pre></div>
+</div>
+<p>Объяснение параметров:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(SID_NAME</span> <span class="pre">=</span> <span class="pre">Product)</span></code>: Указывает имя DSN, созданное ранее для PostgreSQL.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(ORACLE_HOME</span> <span class="pre">=</span> <span class="pre">...)</span></code>: Указывает путь к домашней директории Oracle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(PROGRAM</span> <span class="pre">=</span> <span class="pre">dg4odbc)</span></code>: Указывает программу, которая будет использоваться для подключения к внешней базе данных через Heterogeneous Services.</p></li>
+</ul>
+</li>
+<li><p>Проверьте статус Listener после изменения конфигурации:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsnrctl<span class="w"> </span>status
+</pre></div>
+</div>
+<p>Если Listener не работает корректно, выполните перезапуск:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsnrctl<span class="w"> </span>stop
+lsnrctl<span class="w"> </span>start
+</pre></div>
+</div>
+<p>Или обновите конфигурацию без перезапуска:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsnrctl<span class="w"> </span>reload
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="tnsnames-ora">
+<span id="tnsnames-ora-configuration"></span><h2>2.4 Настройка tnsnames.ora<a class="headerlink" href="#tnsnames-ora" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Перейдите в директорию <code class="docutils literal notranslate"><span class="pre">c:\oracle\product\11.2.0\database\NETWORK\ADMIN\</span></code>.</p></li>
+<li><p>Измените файл <code class="docutils literal notranslate"><span class="pre">tnsnames.ora</span></code>.</p>
+<p>Откройте файл <code class="docutils literal notranslate"><span class="pre">tnsnames.ora</span></code> и добавте следующую запись:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="na">LISTENER_ORCL</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="na">(ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))</span>
+
+<span class="w">  </span><span class="na">ORACLR_CONNECTION_DATA</span><span class="w"> </span><span class="o">=</span>
+<span class="w">  </span><span class="na">(DESCRIPTION</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="na">(ADDRESS_LIST</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="na">(ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(PROTOCOL = IPC)(KEY = EXTPROC1521))</span>
+<span class="w">      </span><span class="na">)</span>
+<span class="w">      </span><span class="na">(CONNECT_DATA</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="na">(SID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CLRExtProc)</span>
+<span class="w">          </span><span class="na">(PRESENTATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">RO)</span>
+<span class="w">      </span><span class="na">)</span>
+<span class="w">  </span><span class="na">)</span>
+
+<span class="hll"><span class="w">  </span><span class="na">Product</span><span class="w"> </span><span class="o">=</span>
+</span><span class="hll"><span class="w">  </span><span class="na">(DESCRIPTION</span><span class="w"> </span><span class="o">=</span>
+</span><span class="hll"><span class="w">      </span><span class="na">(ADDRESS</span><span class="o">=</span><span class="w"> </span><span class="s">(PROTOCOL = tcp)(HOST = 127.0.0.1)(PORT=1521))</span>
+</span><span class="hll"><span class="w">      </span><span class="na">(CONNECT_DATA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(SID=PG_LINK))</span>
+</span><span class="hll"><span class="w">      </span><span class="na">(HS</span><span class="o">=</span><span class="s">OK)</span>
+</span><span class="hll"><span class="w">  </span><span class="na">)</span>
+</span></pre></div>
+</div>
+<p>Объяснение параметров:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(HS=OK)</span></code>: Указывает, что это соединение использует Heterogeneous Services (HS). Без этого параметра Oracle не сможет работать с внешними базами данных.</p></li>
+</ul>
+</li>
+<li><p>Проверьте корректность конфигурации:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tnsping<span class="w"> </span>&lt;SID&gt;
+</pre></div>
+</div>
+<p>Например:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tnsping<span class="w"> </span>Product
+</pre></div>
+</div>
+<p>Если конфигурация правильная, команда выведет успешный результат.</p>
+</li>
+</ol>
+</section>
+<section id="database-link-oracle">
+<span id="database-link-creation"></span><h2>2.5 Создание Database Link в Oracle<a class="headerlink" href="#database-link-oracle" title="Permalink to this heading">¶</a></h2>
+<p>Подключитесь к Oracle базе данных и выполните следующий SQL-запрос:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">LINK</span><span class="w"> </span><span class="n">postgres_link</span>
+<span class="k">CONNECT</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;&lt;user&gt;&quot;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;&lt;pass&gt;&quot;</span>
+<span class="k">USING</span><span class="w"> </span><span class="s1">&#39;POSTGRESQL&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Пример:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">LINK</span><span class="w"> </span><span class="n">Product</span><span class="w"> </span><span class="k">CONNECT</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="ss">&quot;Product_scr&quot;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;password&quot;</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;Product&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Объяснение параметров:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;user&gt;</span></code>: Учетное имя пользователя PostgreSQL, которое имеет доступ к целевой базе данных.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;pass&gt;</span></code>: Пароль для указанного пользователя PostgreSQL.</p></li>
+</ul>
+<p>Удаление или изменение существующего Database Link:</p>
+<ul>
+<li><p>Для удаления:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">LINK</span><span class="w"> </span><span class="n">postgres_link</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Для изменения: Сначала удалите существующий link, затем создайте новый с нужными параметрами.</p></li>
+</ul>
+</section>
+<section id="connection-test">
+<span id="id7"></span><h2>2.6 Проверка соединения<a class="headerlink" href="#connection-test" title="Permalink to this heading">¶</a></h2>
+<p>Выполните тестовый запрос через созданный Database Link, чтобы убедиться, что соединение работает корректно:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;&lt;remote_table&gt;&quot;</span><span class="o">@</span><span class="n">postgres_link</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>При выполнении запроса, таблицу нужно брать в двойные кавычки. Это связано с чувствительностью PostgreSQL к регистру имен объектов. Двойные кавычки позволяют использовать точное имя таблицы, сохраняя его регистр.</p>
+</div>
+</section>
+<section id="troubleshooting">
+<span id="id8"></span><h2>2.7 Устранение неполадок<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">¶</a></h2>
+<p>Если возникли проблемы с настройкой Database Link, рассмотрите следующие шаги для устранения неполадок:</p>
+<ol class="arabic">
+<li><p><strong>Проверка конфигурационных файлов</strong></p>
+<p>Убедитесь, что все параметры в файлах <code class="docutils literal notranslate"><span class="pre">init&lt;dg4odbc&gt;.ora</span></code>, <code class="docutils literal notranslate"><span class="pre">listener.ora</span></code> и <code class="docutils literal notranslate"><span class="pre">tnsnames.ora</span></code> указаны правильно.</p>
+</li>
+<li><p><strong>Перезапуск Listener и баз данных</strong></p>
+<p>Перезапустите Listener и убедитесь, что все службы работают корректно:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsnrctl<span class="w"> </span>stop
+lsnrctl<span class="w"> </span>start
+</pre></div>
+</div>
+<p>Или обновите конфигурацию без перезапуска:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsnrctl<span class="w"> </span>reload
+</pre></div>
+</div>
+</li>
+<li><p><strong>Просмотр журналов ошибок</strong></p>
+<p>Просмотреть журналы Oracle для выявления ошибок, связанных с Heterogeneous Services или DG4ODBC. Журналы обычно находятся в директории <code class="docutils literal notranslate"><span class="pre">$ORACLE_HOME/hs/log/</span></code>.</p>
+<p>Интерпретация логов:</p>
+<ul class="simple">
+<li><p>Логи содержат информацию о подключении, запросах и ошибках.</p></li>
+<li><p>Пример типичных ошибок:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORA-28545</span></code>: Ошибка подключения между Oracle и внешней системой. Проверьте конфигурацию DG4ODBC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORA-12541</span></code>: Listener не найден. Убедитесь, что Listener запущен и настроен правильно.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Включение отладки</strong></p>
+<p>Измените параметр <code class="docutils literal notranslate"><span class="pre">HS_FDS_TRACE_LEVEL</span></code> в файле <code class="docutils literal notranslate"><span class="pre">init&lt;dg4odbc&gt;.ora</span></code> на <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">HS_FDS_TRACE_LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">DEBUG</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Связь с поддержкой</strong></p>
+<p>Если все вышеперечисленное не помогло, обратитесь в службу поддержки Oracle или PostgreSQL за помощью.</p>
+</li>
+</ol>
+</section>
+<section id="postgresql-microsoft-excel-access">
+<h2>3.      Получение данных из базы данных PostgreSQL в Microsoft Excel или Access<a class="headerlink" href="#postgresql-microsoft-excel-access" title="Permalink to this heading">¶</a></h2>
+<p>Чтобы быстро получить данные из базы данных PostgreSQL в Microsoft Excel или Access, можно использовать ODBC (Open Database Connectivity).</p>
+<p>Для этого выполните подготовительные действия:</p>
+<ol class="arabic simple">
+<li><p>Установите ODBC-драйвер для PostgreSQL</p></li>
+<li><p>Настройте ODBC DSN</p></li>
+</ol>
+<p>Подробности указаны в разделе: Установка PostgreSQL ODBC драйвера <cite>:ref:`installing_odbc_driver</cite> `</p>
+<section id="microsoft-excel">
+<span id="microsoft-excel-import"></span><h3>3.1.    Получение данных в Microsoft Excel<a class="headerlink" href="#microsoft-excel" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Откройте Microsoft Excel.</p></li>
+<li><p>Перейдите на вкладку «Данные».</p></li>
+<li><p>Выберите «Получить данные» -&gt; «Из других источников» -&gt; «Из ODBC».</p></li>
+<li><p>Выберите DSN:</p></li>
+</ol>
+<blockquote>
+<div><p>В открывшемся окне выбрать настроенный ранее DSN для PostgreSQL и нажмите «ОК».</p>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>Введите учетные данные:</p></li>
+</ol>
+<blockquote>
+<div><p>Введите имя пользователя и пароль для подключения к базе данных PostgreSQL.</p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>Выберите таблицы и данные:</p></li>
+</ol>
+<blockquote>
+<div><p>После подключения появится окно «Навигатор» (Navigator), где можно выбрать нужные таблицы и данные.</p>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>Загрузите данные:</p></li>
+</ol>
+<blockquote>
+<div><p>Нажмите «Загрузить», чтобы импортировать выбранные данные в Excel.</p>
+</div></blockquote>
+</section>
+<section id="microsoft-access">
+<span id="access-data-import"></span><h3>3.2 Получение данных в Microsoft Access<a class="headerlink" href="#microsoft-access" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>Откройте Microsoft Access.</p></li>
+<li><p>Создайте новую базу данных или откройте существующую.</p></li>
+<li><p>Выполните Импорт данных:</p>
+<ol class="loweralpha simple">
+<li><p>Перейдите на вкладку «Внешние данные».</p></li>
+<li><p>Нажмите «Создать источник данных» -&gt; «Из других источников» -&gt; «Из ODBC».</p></li>
+</ol>
+</li>
+<li><p>Выберите источник данных:</p>
+<p>В открывшемся диалоговом окне выберите «Импортировать таблицы в текущую базу данных» или «Связать источник данных, создавая связную таблицу».
+Нажмите «ОК».</p>
+<p>Объяснение разницы между импортированием и созданием связанных таблиц:</p>
+<ul class="simple">
+<li><p><strong>Импортирование таблиц</strong>: Данные копируются из внешней базы данных (PostgreSQL) в локальную базу данных Access. После импорта изменения в исходной базе данных не будут отражаться в Access.</p></li>
+<li><p><strong>Создание связанных таблиц</strong>: Создается ссылка на внешнюю базу данных (PostgreSQL). Все изменения в исходной базе данных автоматически отображаются в Access.</p></li>
+</ul>
+</li>
+<li><p>Выберите DSN:</p>
+<p>В открывшемся окне «Выбор источника данных» выберите настроенный ранее DSN для PostgreSQL и нажмите «ОК».</p>
+</li>
+<li><p>Введите учетные данные:</p>
+<p>Введите имя пользователя и пароль для подключения к базе данных PostgreSQL.</p>
+</li>
+<li><p>Выберите таблицы:</p>
+<p>В диалоговом окне «Импорт объектов» выберите необходимые таблицы и нажмите «ОК».</p>
+</li>
+</ol>
+</section>
+<section id="power-query-excel">
+<span id="id9"></span><h3>3.3 Получение данных используя Power Query в Excel<a class="headerlink" href="#power-query-excel" title="Permalink to this heading">¶</a></h3>
+<p>Power Query — мощный инструмент для импорта и трансформации данных в Excel. Можно использовать его для подключения к PostgreSQL через ODBC.</p>
+<p>Создание и настройка файла с расширением <code class="docutils literal notranslate"><span class="pre">.dqy</span></code> для подключения к базе данных PostgreSQL и выполнения SQL-запроса включает несколько шагов.</p>
+<ol class="arabic" id="creating-dqy-file">
+<li><p>Создайте файл с расширением <code class="docutils literal notranslate"><span class="pre">.dqy</span></code>:</p>
+<ol class="loweralpha simple">
+<li><p>Откройте текстовый редактор (например, Notepad, Notepad++, Visual Studio Code и т.п.).</p></li>
+<li><p>Создайте новый пустой файл.</p></li>
+</ol>
+</li>
+<li><p>Запишите необходимые данные в файл:</p>
+<p>Вставте следующую информацию в файл, заменив <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;</span></code> и <code class="docutils literal notranslate"><span class="pre">&lt;password&gt;</span></code> на соответствующие значения:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>XLODBC #Обозначает, что это файл запроса ODBC для Excel.
+1 #Версия файла.
+DRIVER={PostgreSQL Unicode};...;XaOpt=1 #Строка соединения, которая содержит параметры подключения к PostgreSQL.
+select * from Product_rate_plans: #SQL-запрос, который будет выполнен после установления соединения. В данном случае, он выбирает все данные из таблицы Product_rate_plans.
+</pre></div>
+</div>
+<p>Пример файла:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>XLODBC
+1
+DRIVER={PostgreSQL Unicode};DATABASE=demo;SERVER=localhost;PORT=5432;UID=postgres;PASSWORD=&lt;password&gt;;SSLmode=disable;ReadOnly=0;Protocol=7.4;FakeOidIndex=0;ShowOidColumn=0;RowVersioning=0;ShowSystemTables=0;ConnSettings=;Fetch=100;Socket=4096;UnknownSizes=0;MaxVarcharSize=255;MaxLongVarcharSize=8190;Debug=0;CommLog=0;Optimizer=0;Ksqo=1;UseDeclareFetch=0;TextAsLongVarchar=1;UnknownsAsLongVarchar=0;BoolsAsChar=1;Parse=0;CancelAsFreeStmt=0;ExtraSysTablePrefixes=dd_;LFConversion=1;UpdatableCursors=1;DisallowPremature=0;TrueIsMinus1=0;BI=0;ByteaAsLongVarBinary=0;UseServerSidePrepare=0;LowerCaseIdentifier=0;GssAuthUseGSS=0;XaOpt=1
+select * from aircrafts
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Всего должно получиться 4 строки, запрос - в последней.</p>
+<p>DRIVER= Эта строка подключения содержит множество параметров, которые можно настроить в зависимости от потребностей и конфигурации базы данных:</p>
+<blockquote>
+<div><p>Объяснение параметров строки подключения:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DRIVER={PostgreSQL</span> <span class="pre">Unicode}</span></code>: Указывает драйвер ODBC, который используется для подключения. В данном случае это драйвер для PostgreSQL с поддержкой Unicode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATABASE=demo</span></code>: Указывает имя базы данных, к которой выполняется подключение. В данном случае это база данных «demo».</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SERVER=localhost</span></code>: Указывает имя хоста или IP-адрес сервера базы данных. «localhost» означает, что сервер базы данных работает на локальном компьютере.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PORT=5432</span></code>: Указывает порт, который используется для подключения к серверу базы данных. По умолчанию PostgreSQL использует порт 5432.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UID=postgres</span></code>: Указывает имя пользователя (User ID), под которым происходит подключение к базе данных. В данном случае это «postgres».</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PASSWORD=&lt;password&gt;</span></code>: Указывает пароль для пользователя, указанного в UID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SSLmode=disable</span></code>: Указывает режим SSL для подключения. «disable» означает, что SSL не используется.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxVarcharSize=255</span></code>: Указывает максимальный размер для столбцов типа VARCHAR.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxLongVarcharSize=8190</span></code>: Указывает максимальный размер для столбцов типа LONGVARCHAR.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DRIVER={PostgreSQL</span> <span class="pre">Unicode}</span></code>: Указывает драйвер ODBC, который используется для подключения. В данном случае это драйвер для PostgreSQL с поддержкой Unicode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATABASE=demo</span></code>: Указывает имя базы данных, к которой выполняется подключение. В данном случае это база данных «demo».</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SERVER=Localhost</span></code>: Указывает имя хоста или IP-адрес сервера базы данных. «Localhost» означает, что сервер базы данных работает на локальном компьютере.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PORT=5432</span></code>: Указывает порт, который используется для подключения к серверу базы данных. По умолчанию PostgreSQL использует порт 5432.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UID=postgres</span></code>: Указывает имя пользователя (User ID), под которым происходит подключение к базе данных. В данном случае это «postgres».</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PASSWORD=&lt;password&gt;</span></code>: Указывает пароль для пользователя, указанного в UID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SSLmode=disable</span></code>: Указывает режим SSL для подключения. «disable» означает, что SSL не используется.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ReadOnly=0</span></code>: Указывает, будет ли подключение только для чтения. 0 (ноль) означает, что подключение не только для чтения.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Protocol=7.4</span></code>: Указывает версию протокола PostgreSQL, которая будет использоваться.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FakeOidIndex=0</span></code>: Этот параметр определяет, будет ли драйвер создавать фиктивный OID индекс. 0 означает, что он не будет создан.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShowOidColumn=0</span></code>: Указывает, будет ли отображаться колонка OID. 0 означает, что она не будет отображаться.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RowVersioning=0</span></code>: Указывает, используется ли управление версиями строк. 0 означает, что оно не используется.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShowSystemTables=0</span></code>: Указывает, будут ли отображаться системные таблицы. 0 означает, что они не будут отображаться.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConnSettings=</span></code>: Дополнительные настройки подключения. В данном случае они не указаны.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fetch=100</span></code>: Указывает количество строк, которые будут извлекаться за один раз.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Socket=4096</span></code>: Указывает размер сокета в байтах.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnknownSizes=0</span></code>: Указывает, как обрабатывать столбцы с неизвестными размерами. 0 означает, что они будут обрабатываться как есть.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxVarcharSize=255</span></code>: Указывает максимальный размер для столбцов типа VARCHAR.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxLongVarcharSize=8190</span></code>: Указывает максимальный размер для столбцов типа LONGVARCHAR.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Debug=0</span></code>: Указывает, будет ли включен режим отладки. 0 означает, что он не включен.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CommLog=0</span></code>: Указывает, будет ли включен журнал коммуникаций. 0 означает, что он не включен.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Optimizer=0</span></code>: Указывает, будет ли использоваться оптимизатор. 0 означает, что он не будет использоваться.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ksqo=1</span></code>: Указывает, будет ли использоваться ключевой запрос оптимизатора. 1 означает, что он будет использоваться.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UseDeclareFetch=0</span></code>: Указывает, будет ли использоваться DECLARE и FETCH для извлечения данных. 0 означает, что они не будут использоваться.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TextAsLongVarchar=1</span></code>: Указывает, будут ли столбцы типа TEXT обрабатываться как LONGVARCHAR. 1 означает, что будут.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnknownsAsLongVarchar=0</span></code>: Указывает, будут ли неизвестные типы обрабатываться как LONGVARCHAR. 0 означает, что не будут.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BoolsAsChar=1</span></code>: Указывает, будут ли булевые значения обрабатываться как CHAR. 1 означает, что будут.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Parse=0</span></code>: Указывает, будет ли драйвер анализировать SQL-запросы. 0 означает, что не будет.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CancelAsFreeStmt=0</span></code>: Указывает, будет ли CANCEL обрабатываться как FreeStmt. 0 означает, что не будет.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ExtraSysTablePrefixes=dd_</span></code>: Указывает дополнительные префиксы для системных таблиц.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LFConversion=1</span></code>: Указывает, будет ли производиться конвертация строк конца строки. 1 означает, что будет.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UpdatableCursors=1</span></code>: Указывает, будут ли курсоры обновляемыми. 1 означает, что будут.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DisallowPremature=0</span></code>: Указывает, будет ли запрещен преждевременный доступ к данным. 0 означает, что не будет.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TrueIsMinus1=0</span></code>: Указывает, будет ли TRUE представляться как -1. 0 означает, что не будет.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BI=0</span></code>: Параметр, возможно, означает использование метаданных для идентификации столбцов. 0 означает, что не используется.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ByteaAsLongVarBinary=0</span></code>: Указывает, будут ли столбцы типа BYTEA обрабатываться как LONGVARBINARY. 0 означает, что не будут.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UseServerSidePrepare=0</span></code>: Указывает, будет ли использоваться подготовка на стороне сервера. 0 означает, что не будет.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LowerCaseIdentifier=0</span></code>: Указывает, будут ли идентификаторы преобразованы в нижний регистр. 0 означает, что не будут.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GssAuthUseGSS=0</span></code>: Указывает, будет ли использоваться GSS-авторизация. 0 означает, что не будет.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">XaOpt=1</span></code>: Указывает опции для XA (расширенной архитектуры транзакций). 1 означает, что опции включены.</p></li>
+</ul>
+</div></blockquote>
+<p>Перед выполнением запроса проверьте данные, заменив <code class="docutils literal notranslate"><span class="pre">DATABASE</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;</span></code> на имя пользователя базы данных PostgreSQL и <code class="docutils literal notranslate"><span class="pre">&lt;password&gt;</span></code>,  на соответствующий пароль.</p>
+<ol class="arabic simple" start="3">
+<li><p>Сохранение файла:</p></li>
+</ol>
+<p>Сохраните файл с расширением <code class="docutils literal notranslate"><span class="pre">.dqy</span></code>.</p>
+<p>Убедитесь, что в процессе сохранения выбрано правильное расширение <code class="docutils literal notranslate"><span class="pre">.dqy</span></code>, а не <code class="docutils literal notranslate"><span class="pre">.txt</span></code> или другое.</p>
+<ol class="arabic simple" start="4">
+<li><p>Откройте файл</p></li>
+</ol>
+<p>После открытия файла, будет выполнен запрос.</p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Проверьте, что все настройки ODBC и учётные данные правильны, чтобы избежать проблем с подключением.</p>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="project_7.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Инструкция как запусть свой первый статический сайт на Sphinx</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="project_5.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Документация API</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Llama techwriter
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Руководство доступа к PostgreSQL через ODBC</a><ul>
+<li><a class="reference internal" href="#introduction">1. Введение</a><ul>
+<li><a class="reference internal" href="#id3">1.1 Целевая аудитория:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#postgresql-oracle">2. Руководство по созданию доступа к PostgreSQL из Oracle</a><ul>
+<li><a class="reference internal" href="#installing-odbc-driver">2.1 Установка PostgreSQL ODBC драйвера</a><ul>
+<li><a class="reference internal" href="#windows">2.1.1 Windows</a></li>
+<li><a class="reference internal" href="#linux">2.1.2 Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oracle-heterogeneous-services-hs-agents">2.2 Настройка Oracle Heterogeneous Services (hs) agents</a><ul>
+<li><a class="reference internal" href="#init-dg4odbc-ora">2.2.1 Создание и настройка файла init&lt;dg4odbc&gt;.ora</a><ul>
+<li><a class="reference internal" href="#windows-init-file">2.2.1.1 Windows</a></li>
+<li><a class="reference internal" href="#linux-init-file">2.2.1.2 Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#listener-ora">2.3 Настройка listener.ora</a></li>
+<li><a class="reference internal" href="#tnsnames-ora">2.4 Настройка tnsnames.ora</a></li>
+<li><a class="reference internal" href="#database-link-oracle">2.5 Создание Database Link в Oracle</a></li>
+<li><a class="reference internal" href="#connection-test">2.6 Проверка соединения</a></li>
+<li><a class="reference internal" href="#troubleshooting">2.7 Устранение неполадок</a></li>
+<li><a class="reference internal" href="#postgresql-microsoft-excel-access">3.      Получение данных из базы данных PostgreSQL в Microsoft Excel или Access</a><ul>
+<li><a class="reference internal" href="#microsoft-excel">3.1.    Получение данных в Microsoft Excel</a></li>
+<li><a class="reference internal" href="#microsoft-access">3.2 Получение данных в Microsoft Access</a></li>
+<li><a class="reference internal" href="#power-query-excel">3.3 Получение данных используя Power Query в Excel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ddbc6389"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/print_button.js?v=ca7e3c2e"></script>
+    <script src="../_static/export_pdf.js?v=a067a74f"></script>
+    <script src="../_static/translations.js?v=29b1f277"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    </body>
+</html>
