@@ -78,6 +78,27 @@
     color: #333;
 }
 
+/* Переопределение фона основной части карточки */
+.sd-card.sd-bg-info {
+    background-color: #494987 !important; /* Устанавливаем нужный цвет */
+    color: white !important; /* Устанавливаем белый текст */
+    border: 1px solid #3a3a6b !important; /* Опционально: добавляем границу */
+    border-radius: 8px !important; /* Опционально: скругляем углы */
+}
+
+/* Переопределение фона заголовка карточки */
+.sd-card-header.sd-bg-primary {
+    background-color: #3a3a6b !important; /* Темнее основного цвета для контраста */
+    color: white !important; /* Белый текст */
+}
+
+/* Переопределение футера карточки */
+.sd-card-footer.sd-font-weight-bold {
+    background-color: #5c5c9f !important; /* Оттенок основного цвета для футера */
+    color: white !important; /* Белый текст */
+    font-weight: bold; /* Жирный шрифт */
+}
+
 .image-container {
     position: relative;
     display: inline-block;
