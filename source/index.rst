@@ -34,10 +34,10 @@
    :maxdepth: 1
    :caption: Навигация по сайту:
          
-   skills/index
    courses_and_certificates
    projects/index
    blog/index
+   skills/index
    contacts
    technical/index
 

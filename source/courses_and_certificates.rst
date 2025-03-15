@@ -13,6 +13,39 @@
    :class-header: sd-bg-primary sd-text-white
    :class-footer: sd-font-weight-bold
 
+   **Диплом о профессиональной переподготовке**
+
+   - **Присвоенная квалификация**: Технический писатель (специалист потехнической документации в области информационных технологий)
+   - **Дата присвоения** 03.11.2023 г.
+   - **Документ**:
+
+    .. image:: _static/photo_diplom.jpg
+        :scale: 30%
+        :align: center
+        :alt: Документ о квалификации  
+
+.. card::
+   :class-card: sd-bg-info sd-text-white
+   :class-header: sd-bg-primary sd-text-white
+   :class-footer: sd-font-weight-bold
+
+   **Git c портфолио**
+
+   - **Курс от**: https://t.me/quizzes4fun
+   - **Результаты обучающего курса**: `Руководство пользователя Git <../source/projects/project_3.md>`_
+   - **Дата выдачи**: 14 ноября 2024 г.
+   - **Сертификат**: 
+
+    .. image:: _static/photo_git.jpg
+        :scale: 30%
+        :align: center
+        :alt: Сертификат Конференция технических писателей
+
+.. card::
+   :class-card: sd-bg-info sd-text-white
+   :class-header: sd-bg-primary sd-text-white
+   :class-footer: sd-font-weight-bold
+
    **Конференция технических писателей**
 
    - **Сайт конференции**: https://techwriterdays.ru/
@@ -24,6 +57,7 @@
         :scale: 30%
         :align: center
         :alt: Сертификат Конференция технических писателей
+
 
 
 
