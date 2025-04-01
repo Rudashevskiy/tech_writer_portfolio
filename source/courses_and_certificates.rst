@@ -29,6 +29,23 @@
    :class-header: sd-bg-primary sd-text-white
    :class-footer: sd-font-weight-bold
 
+   **Документация API**
+
+   - **Курс от**: https://documentat.io/courses/
+   - **Дата проведения**: 17 - 28 марта 2025 г.
+   - **Сертификат**: 
+
+    .. image:: _static/sertAPI.png
+        :scale: 30%
+        :align: center
+        :alt: Сертификат Документация API
+
+
+.. card::
+   :class-card: sd-bg-info sd-text-white
+   :class-header: sd-bg-primary sd-text-white
+   :class-footer: sd-font-weight-bold
+
    **Git c портфолио**
 
    - **Курс от**: https://t.me/quizzes4fun
