@@ -1,0 +1,60 @@
+@startuml
+' Подключение библиотеки C4-PlantUML
+!if %variable_exists("RELATIVE_INCLUDE")
+  !include %get_variable_value("RELATIVE_INCLUDE")/C4-PlantUML/C4_Container.puml
+!else
+  !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!endif
+
+' Определение элементов системы
+Person(Operators, "Операторы", "Специалисты по обслуживанию")
+System_Boundary(C1, "Цифровая тяговая подстань РЖД") {
+    System_Boundary(С11, "Физическое оборудование"){
+        System(TPS, "Тяговая подстанция", "Физическое оборудование (трансформаторы, выключатели, датчики)")
+        Container(IoT_GW, "IoT Gateway", "Шлюз для сбора данных с датчиков", "MQTT, HTTP")
+        Container(Cloud_Platform, "Облачная платформа", "Платформа для анализа и хранения данных", "Python, SQL")
+        Container(Digital_Twin, "Цифровой двойник", "Виртуальная модель тяговой подстанции", "Simulink, Python")
+    }
+
+    System_Boundary(С12, "Подсистемы тяговой подстанции"){
+        Container(Transformer, "Трансформатор", "Основной элемент преобразования энергии")
+        Container(Circuit_Breaker, "Выключатель", "Защитное устройство")
+        Container(Sensors, "Датчики", "Система мониторинга параметров")
+        Container(Control_System, "Система управления", "Управление оборудованием")
+    }
+
+    System_Boundary(С13, "Элементы облачной платформы"){
+        Container(Data_Lake, "Data Lake", "Хранилище данных для анализа", "Hadoop, S3")
+        Container(Predictive_Analytics, "Система предиктивной аналитики", "Прогнозирование отказов оборудования", "Machine Learning")
+        Container(Maintenance_System, "Система техобслуживания", "Генерация планов обслуживания", "Python, SQL")
+        }
+}
+
+' Внешние системы
+System_Boundary(C2, "Внешние системы") {
+    System_Ext(Weather_API, "API погоды", "Информация о погодных условиях")
+    System_Ext(Grid_Manager, "Управляющая компания электросетей", "Мониторинг состояния энергосети")
+    System_Ext(Simulation_Environment, "Иммитационная среда", "Моделирование состояния энергосистемы")
+}
+
+' Взаимодействия между элементами
+Rel(TPS, IoT_GW, "Сбор данных", "Датчики")
+Rel(IoT_GW, Cloud_Platform, "Передача данных", "MQTT, HTTP")
+Rel(Sensors, IoT_GW, "Данные", "Температура, вибрация, ток")
+Rel(Control_System, Transformer, "Управление", "Настройки")
+Rel(Control_System, Circuit_Breaker, "Управление", "Команды")
+Rel(Transformer, Control_System, "Статус", "Параметры работы")
+Rel(Circuit_Breaker, Control_System, "Статус", "Состояние")
+
+Rel(Cloud_Platform, Data_Lake, "Хранение", "Исторические данные")
+Rel(Cloud_Platform, Predictive_Analytics, "Анализ", "Прогнозирование")
+Rel(Predictive_Analytics,  Maintenance_System, "Прогнозы", "Рекомендации по обслуживанию")
+Rel(Maintenance_System, Operators, "Рекомендации", "Плановые действия")
+Rel(Digital_Twin, TPS, "Синхронизация", "Реальное состояние")
+Rel(Digital_Twin, Simulation_Environment, "Моделирование", "Виртуальное моделирование")
+Rel(Simulation_Environment, Predictive_Analytics, "Результаты", "Сценарии работы")
+
+Rel(Weather_API, Cloud_Platform, "Данные", "Погода")
+Rel(Grid_Manager, Cloud_Platform, "Данные", "Состояние энергосети")
+Rel(Predictive_Analytics, Operators, "Аномалии", "Предупреждения")
+@enduml

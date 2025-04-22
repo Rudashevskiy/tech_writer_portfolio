@@ -1,0 +1,191 @@
+{
+    "apiVersion": "1.0",
+    "title": "Wire Heating Calculation Service",
+    "description": "API for calculating the heating of electrical wires based on various parameters.",
+    "endpoints": [
+      {
+        "name": "Calculate Wire Heating",
+        "url": "/calculate-heating",
+        "method": "POST",
+        "requestBody": {
+          "type": "object",
+          "properties": {
+            "wireModel": {
+              "type": "string",
+              "description": "The model or mark of the wire (e.g., 'МФ-85', 'МФ-100'). Must match a value from the TWires.dat file."
+            },
+            "windSpeed": {
+              "type": "number",
+              "description": "Wind speed in meters per second (m/s). Default: 1.0."
+            },
+            "ambientTemperature": {
+              "type": "number",
+              "description": "Ambient temperature in degrees Celsius (°C). Default: 40.0."
+            },
+            "maxTime": {
+              "type": "integer",
+              "description": "Maximum simulation time in minutes. Default: 60."
+            },
+            "timeStep": {
+              "type": "integer",
+              "description": "Time step for the simulation in minutes. Default: 1."
+            },
+            "tmpProgram": {
+              "type": "boolean",
+              "description": "Whether to use a temporary program for calculations. Default: false."
+            },
+            "calculationMethod": {
+              "type": "string",
+              "description": "The method used for the calculation (e.g., 'Ми77', 'Ми61'). Must match one of the available methods."
+            }
+          },
+          "required": ["wireModel", "calculationMethod"]
+        },
+        "responseBody": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Status of the calculation ('success' or 'error')."
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional message or error description."
+            },
+            "results": {
+              "type": "object",
+              "properties": {
+                "currentOverTime": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "description": "Current values over time in Amperes (A)."
+                  },
+                  "description": "Array of current values over time."
+                },
+                "temperatureOverTime": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "description": "Temperature values over time in degrees Celsius (°C)."
+                  },
+                  "description": "Array of temperature values over time."
+                },
+                "permissibleTemperature": {
+                  "type": "number",
+                  "description": "Permissible temperature limit in degrees Celsius (°C)."
+                },
+                "tapr": {
+                  "type": "number",
+                  "description": "Tapr parameter specific to the selected wire model."
+                },
+                "additionalStats": {
+                  "type": "object",
+                  "properties": {
+                    "averageCurrent": {
+                      "type": "number",
+                      "description": "Average current over the simulation period in Amperes (A)."
+                    },
+                    "peakTemperature": {
+                      "type": "number",
+                      "description": "Peak temperature reached during the simulation in degrees Celsius (°C)."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Get Available Wire Models",
+        "url": "/available-wires",
+        "method": "GET",
+        "responseBody": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Status of the request ('success' or 'error')."
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional message or error description."
+            },
+            "wires": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "mark": {
+                    "type": "string",
+                    "description": "The model or mark of the wire (e.g., 'МФ-85')."
+                  },
+                  "diameter": {
+                    "type": "number",
+                    "description": "Diameter of the wire in millimeters (mm)."
+                  },
+                  "resistance": {
+                    "type": "number",
+                    "description": "Resistance of the wire in Ohms per kilometer (Ω/km)."
+                  },
+                  "thermalCapacity": {
+                    "type": "number",
+                    "description": "Thermal capacity of the wire in Joules per Kelvin (J/K)."
+                  },
+                  "ratedCurrent": {
+                    "type": "number",
+                    "description": "Rated current of the wire in Amperes (A)."
+                  },
+                  "durabilityTemperature": {
+                    "type": "number",
+                    "description": "Durability temperature of the wire in degrees Celsius (°C)."
+                  },
+                  "tapr": {
+                    "type": "number",
+                    "description": "Tapr parameter specific to the wire model."
+                  }
+                }
+              },
+              "description": "List of available wire models with their properties."
+            }
+          }
+        }
+      },
+      {
+        "name": "Get Available Calculation Methods",
+        "url": "/available-methods",
+        "method": "GET",
+        "responseBody": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "description": "Status of the request ('success' or 'error')."
+            },
+            "message": {
+              "type": "string",
+              "description": "Additional message or error description."
+            },
+            "methods": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "shortName": {
+                    "type": "string",
+                    "description": "Short name of the calculation method (e.g., 'Ми77')."
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "description": "Full name or description of the calculation method (e.g., 'Михеев, 1977, гладкий')."
+                  }
+                }
+              },
+              "description": "List of available calculation methods."
+            }
+          }
+        }
+      }
+    ]
+  }
